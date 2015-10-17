@@ -68,6 +68,13 @@ public class CalculatorTest {
 
     	assertEquals(702, Calculator.add("1001,2,700,2000"));
     } 
+
+	@Test
+    public void testDelOfAnyLength() {
+
+    	assertEquals(6, Calculator.add("//[***]\n1***2***3"));
+    } 
+
 }
 
 

@@ -27,15 +27,62 @@ public class Calculator {
 
 	private static String[] splitNumbers(String numbers) {
 	
+		String delim = "";
+		String number = "";
+		
 		if (numbers.startsWith("//"))
 		{
-			String delim = numbers.substring(2,3);
-			String number = numbers.substring(4);
-
-			return number.split(delim);
+			if (numbers.charAt(2) != '[')
+			{
+				delim = numbers.substring(2,3);
+				number = numbers.substring(4);
+				
+				return number.split(delim);
+			}
+			
+			else 
+			{
+				int i = 0;
+				delim = splitNum(numbers);
+				for (i = 0; i < numbers.length(); i++)
+				{
+					if (numbers.substring(i, i+1).equals("\n"))
+					{
+						break;
+					}
+				}
+				
+				number = numbers.substring(i+1);
+				
+				number = number.replace(delim, ",");
+			}
+		    return number.split("[,\n]");
 		}
-
-	    return numbers.split("[,\n]");
+		
+		return numbers.split("[,\n]");
+	}
+	
+	public static String splitNum(String numbers)
+	{
+		String delim = "";
+				
+		String num = numbers.substring(3);
+				
+		if (numbers.charAt(2) == '[')
+		{
+			for (int i = 0; i < num.length(); i++)
+			{
+				if (num.charAt(i) != ']')
+				{
+					delim += num.substring(i, i+1);
+				}
+				else
+				{
+					break;
+				}
+			}
+		}		
+		return delim;
 	}
       
     private static int sum(String[] numbers){
@@ -71,7 +118,6 @@ public class Calculator {
 				num += ",";
 			}
 		}
-
 		throw new IllegalArgumentException(totalNum);
 	}
 }
