@@ -3,10 +3,11 @@ package is.ru.stringcalculator;
 public class Calculator {
 
 	public static int add (String text) {
+		
 		if(text.equals(""))
 			return 0;
 
-		else if(text.contains(",") || text.contains("\n"))
+		else if(text.contains(",") || text.contains("\n") || text.startsWith("//"))
 		{
 			return sum(splitNumbers(text));
 		}
@@ -20,6 +21,15 @@ public class Calculator {
 	}
 
 	private static String[] splitNumbers(String numbers) {
+	
+		if (numbers.startsWith("//"))
+		{
+			String delim = numbers.substring(2,3);
+			String number = numbers.substring(4);
+
+			return number.split(delim);
+		}
+
 	    return numbers.split("[,\n]");
 	}
       
@@ -31,3 +41,6 @@ public class Calculator {
 		return total;
     }
 }
+
+
+
