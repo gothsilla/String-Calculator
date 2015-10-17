@@ -7,6 +7,11 @@ public class Calculator {
 		if(text.equals(""))
 			return 0;
 
+		else if (text.contains("-"))
+		{
+			return negative(text);
+		}
+
 		else if(text.contains(",") || text.contains("\n") || text.startsWith("//"))
 		{
 			return sum(splitNumbers(text));
@@ -40,6 +45,29 @@ public class Calculator {
 		}
 		return total;
     }
+
+    private static int negative(String number) {
+		
+		String message = "Negatives not allowed: ";
+		
+		String totalNum = "";
+		String num = "";
+		
+		for (int i = 0; i < number.length(); i++)
+		{
+			if (number.substring(i, i+1).contains("-"))
+			{
+
+				num += number.substring(i, i+2);
+
+				totalNum = message + num;
+				
+				num += ",";
+			}
+		}
+		
+		throw new IllegalArgumentException(totalNum);
+	}
 }
 
 
