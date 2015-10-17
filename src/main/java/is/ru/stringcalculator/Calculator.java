@@ -3,10 +3,12 @@ package is.ru.stringcalculator;
 public class Calculator {
 
 	public static int add(String text){
-		if(text.equals("")){
+		if(text.equals(""))
 			return 0;
-		}
-		return 1;
+		else
+			return 1;
+		
+		//return 1;
 	}
 
 	
