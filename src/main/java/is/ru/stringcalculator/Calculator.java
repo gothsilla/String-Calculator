@@ -41,7 +41,13 @@ public class Calculator {
     private static int sum(String[] numbers){
  	    int total = 0;
         for(String number : numbers){
-		    total += toInt(number);
+
+        	int tempNum = toInt(number);
+	    	
+	    	if (tempNum <= 1000)
+	    	{
+			    total += tempNum;
+	    	}
 		}
 		return total;
     }
@@ -65,7 +71,7 @@ public class Calculator {
 				num += ",";
 			}
 		}
-		
+
 		throw new IllegalArgumentException(totalNum);
 	}
 }
