@@ -101,17 +101,20 @@ public class Calculator {
 		}		
 		return delim;
 	}
-      
+	
     private static int sum(String[] numbers){
  	    int total = 0;
         for(String number : numbers){
 
-        	int tempNum = toInt(number);
+        	if (!number.isEmpty())
+        	{
+        		int tempNum = toInt(number);
 	    	
-	    	if (tempNum <= 1000)
-	    	{
-			    total += tempNum;
-	    	}
+	    		if (tempNum <= 1000)
+	    		{
+			   		total += tempNum;
+	    		}
+        	}
 		}
 		return total;
     }
