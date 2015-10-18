@@ -40,6 +40,26 @@ public class Calculator {
 				return number.split(delim);
 			}
 			
+			else if (numbers.contains("]["))
+			{					
+				String firstDel = "";
+				int n = numbers.indexOf("\n");
+				String rest = numbers.substring(n+1);
+				String input = numbers.substring(3, n-1);
+								
+				for (int i = 0; i < input.length(); i++)
+				{
+					if (input.charAt(i) != ']' && input.charAt(i) != '[')
+					{
+						firstDel += input.substring(i, i+1);
+					}
+					
+				}
+				
+				firstDel = "[" + firstDel + "]";
+				return rest.split(firstDel);
+			}
+			
 			else 
 			{
 				int i = 0;
@@ -51,14 +71,11 @@ public class Calculator {
 						break;
 					}
 				}
-				
 				number = numbers.substring(i+1);
-				
 				number = number.replace(delim, ",");
 			}
 		    return number.split("[,\n]");
 		}
-		
 		return numbers.split("[,\n]");
 	}
 	
