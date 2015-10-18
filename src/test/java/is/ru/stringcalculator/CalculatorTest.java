@@ -39,22 +39,40 @@ public class CalculatorTest {
     	assertEquals(3, Calculator.add("//;\n1;2"));
     }
     
-    @Test
-    (expected = IllegalArgumentException.class)
-    public void testNegativeNum() {
-    	assertEquals("Negatives not allowed: -1", Calculator.add("-1,2"));
+    @Test(expected = RuntimeException.class)  
+    public void testThrowExecptionForOneNegNumber() {
+    	try{
+    		Calculator.add("-1,2");
+    	}
+    	catch (RuntimeException ex){
+    		
+    		assertEquals("Negatives not allowed: -1",ex.getMessage());
+    		throw ex;
+    	}
     }
 	
-    @Test
-    (expected = IllegalArgumentException.class)
-    public void testManyNegativeNum() {
-    	assertEquals("Negatives not allowed: -4,-5", Calculator.add("2,-4,3,-5"));
+    @Test(expected = RuntimeException.class)  
+    public void testThrowExecptionForMultNegNumbers() {
+    	try{
+    		Calculator.add("2,-4,3,-5");
+    	}
+    	catch (RuntimeException ex){
+    		
+    		assertEquals("Negatives not allowed: -4,-5",ex.getMessage());
+    		throw ex;
+    	}
     }
-    
-    @Test
-    (expected = IllegalArgumentException.class)
-    public void testManyNegativeNumWithDiffDelim() {
-    	assertEquals("Negatives not allowed: -1", Calculator.add("//;\n-1;2"));
+
+    @Test(expected = RuntimeException.class)  
+    public void testThrowExecptionForNegNumWithDiffDelim() {
+    	try{
+    		Calculator.add("//;\n-1;2");
+    	}
+    	catch (RuntimeException ex){
+    		
+    		assertEquals("Negatives not allowed: -1",ex.getMessage());
+    		throw ex;
+    	}
     }
 
     @Test
